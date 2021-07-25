@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>Digital Clock</title>
+    <style>
+        body {
+            background: black;
+        }
+
+        .clock {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: white;
+            font-size: 50px;
+            font-family: Orbitron;
+            letter-spacing: 7px;
+        }
+    </style>
+</head>
+
+<body onload="starttime()">
+    <script>
+        function starttime() {
+            const date = new Date();
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            let am_pm = (h < 12) ? "AM" : "PM";
+            m = checkTime(m);
+            s = checkTime(s);
+            if (h > 12) {
+                h = h - 12;
+            }
+            if (h == 0) {
+                h = 12;
+            }
+            document.getElementById("time").innerHTML = h + ":" + m + ":" + s + am_pm;
+            setTimeout(starttime, 1000);
+        }
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+    </script>
+    <p id="time" class="clock"></p>
+</body>
+
+</html>
